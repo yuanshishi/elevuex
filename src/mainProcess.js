@@ -14,7 +14,7 @@ class mainProcess {
     init() {
         ipcMain.on(CONNECT, event => {
             this.List.set(event.sender.id, event.sender)
-            event.sender.webContents.send(INIT, this.store)
+            event.sender.webContents.send(INIT, this.store.state)
             event.sender.on("destroyed", () => {
                 this.List.delete(event.sender.id)
             })
@@ -38,7 +38,5 @@ class mainProcess {
 }
 export default (store) => {
     new mainProcess(store)
-    return () => {
-    }
 }
 

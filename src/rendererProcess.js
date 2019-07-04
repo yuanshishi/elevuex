@@ -19,8 +19,8 @@ class rendererProcess {
         ipcRenderer.on(SENDDATA, (event, mutation) => {
             this.updateVuex(event, mutation)
         })
-        ipcRenderer.on(INIT, (store) => {
-            this.store.replaceState(store.state)
+        ipcRenderer.on(INIT, (e,state) => {
+            this.store.replaceState(state)
         })
     }
 
@@ -35,8 +35,6 @@ class rendererProcess {
     }
 
 }
-export default (option = {}) => {
-    new rendererProcess(option)
-    return (store) => {
-    }
+export default (store) => {
+    new rendererProcess(store)
 } 
