@@ -1,5 +1,5 @@
 import { ipcRenderer } from "electron"
-const Store = require('electron-store');
+import Store from "electron-store"
 const vuexStore = new Store();
 
 const INIT = "ys_init"
