@@ -1,4 +1,6 @@
 import { ipcMain } from "electron"
+const Store = require('electron-store');
+const vuexStore = new Store();
 
 const INIT = "ys_init"
 const CONNECT = "ys_connect"
@@ -8,21 +10,26 @@ class mainProcess {
     constructor(store) {
         this.List = new Map()
         this.store = store
-        this.init() 
+        if (this.store.state) {
+            vuexStore.set(this.store.state)
+        }
+        this.init()
     }
     //初始化
     init() {
         ipcMain.on(CONNECT, event => {
-            let id=event.sender.id
+            let id = event.sender.id
             this.List.set(event.sender.id, event.sender)
-            event.sender.webContents.send(INIT, this.store.state)
             event.sender.on("destroyed", () => {
                 this.List.delete(id)
             })
         })
 
         ipcMain.on(SENDDATA, (event, mutation) => {
-            this.store.dispatch(mutation.type,mutation.payload)
+            this.store.dispatch(mutation.type, mutation.payload)
+            if (this.store.state) {
+                vuexStore.set(this.store.state)
+            }
             this.noticeRenderers(mutation)
         })
     }

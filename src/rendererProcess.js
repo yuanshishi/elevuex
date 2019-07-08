@@ -1,4 +1,6 @@
 import { ipcRenderer } from "electron"
+const Store = require('electron-store');
+const vuexStore = new Store();
 
 const INIT = "ys_init"
 const CONNECT = "ys_connect"
@@ -23,9 +25,12 @@ class rendererProcess {
         ipcRenderer.on(SENDDATA, (event, mutation) => {
             this.updateVuex( mutation)
         })
-        ipcRenderer.on(INIT, (e,state) => {
-            this.store.replaceState(state)
-        })
+        
+        // console.log(vuexStore.get())
+        this.store.replaceState(vuexStore.get())
+        // ipcRenderer.on(INIT, (e,state) => {
+        //     this.store.replaceState(state)
+        // })
     }
 
     //通知主进程

@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/yuanshishi/elevuex/issues"
   },
-  "homepage": "https://github.com/yuanshishi/elevuex#readme"
+  "homepage": "https://github.com/yuanshishi/elevuex#readme",
+  "dependencies": {
+    "electron": "^4.2.6",
+    "electron-store": "^4.0.0"
+  }
 }
