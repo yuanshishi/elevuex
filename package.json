@@ -1,6 +1,6 @@
 {
   "name": "elevuex",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "",
   "main": "./src",
   "scripts": {
@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/yuanshishi/elevuex#readme",
   "dependencies": {
-    "electron": "^4.2.6",
     "electron-store": "^4.0.0"
+  },
+  "devDependencies": {
+    "electron": "^4.2.6"
   }
 }

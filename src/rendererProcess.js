@@ -26,11 +26,7 @@ class rendererProcess {
             this.updateVuex( mutation)
         })
         
-        // console.log(vuexStore.get())
         this.store.replaceState(vuexStore.get())
-        // ipcRenderer.on(INIT, (e,state) => {
-        //     this.store.replaceState(state)
-        // })
     }
 
     //通知主进程
