@@ -11,7 +11,14 @@ class mainProcess {
         this.List = new Map()
         this.store = store
         if (this.store.state) {
-            vuexStore.set(this.store.state)
+            let vuex = vuexStore.get()
+            if (JSON.stringify(vuex) != "{}") {
+                let newsState=Object.assign(JSON.parse(JSON.stringify(this.store.state)), vuex)
+                vuexStore.set(newsState)
+                this.store.replaceState(newsState)
+            } else {
+                vuexStore.set(this.store.state)
+            }
         }
         this.init()
     }
